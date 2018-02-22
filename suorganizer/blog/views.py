@@ -8,12 +8,14 @@ from .models import Post
 
 # Create your views here.
 class PostList(View):
+    """Example of a class-based view"""
     template_name = 'blog/post_list.html'
     def get(self, request, parent_template=None):
         return render(request, self.template_name, 
                     {'post_list':Post.objects.all()})
 
 def post_detail(request, year, month, slug, parent_template=None):
+    """Display the details of a single post"""
     post = get_object_or_404(
         Post,
         pub_date__year=year,
